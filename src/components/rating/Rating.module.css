@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+.rating {
+  @apply flex gap-2;
+}
+
+.filled {
+  @apply fill-yellow-100;
+}
