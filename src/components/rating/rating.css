@@ -7,3 +7,7 @@
 .filled {
   @apply fill-yellow-100;
 }
+
+.rating-star {
+  vertical-align: middle;
+}

@@ -1,10 +1,24 @@
-'use client';
+import { StarProps } from "./star.props";
 
-import { StarProps } from './Star.props';
-
-const Star = ({ isFilled = false, className, ...props }: StarProps) => {
+const Star: React.FC<StarProps> = ({
+  isFilled = false,
+  className,
+  onMouseEnter,
+  onMouseLeave,
+  onClick,
+  onKeyDown,
+  tabIndex,
+  ...props
+}: StarProps) => {
   return (
-    <span className={className}>
+    <span 
+      data-testid={isFilled ? 'star-filled' : 'star-unfilled'}
+      className={`star ${isFilled ? 'filled' : ''} ${className}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      tabIndex={tabIndex} >
       <svg
         width='20'
         height='20'

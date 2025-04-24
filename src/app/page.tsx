@@ -1,18 +1,32 @@
 'use client';
-import { JSX, useState } from 'react';
+import { useState } from 'react';
+import Layout from "@/components/layout";
+import products from '@/products.json'
+import ProductCard from '@/components/product/card/productCard';
+import SearchBar from '@/components/searchBar/searchBar';
 
-import Rating from '@/components/rating/Rating';
-import SearchBar from '@/components/searchBar/SearchBar';
+const Home = () => {
+  const [searchText, setSearchText] = useState<string>('');
 
-export default function Home(): JSX.Element {
-  const [rating, setRating] = useState(3);
-  const [searchText, setSearchText] = useState('');
-  return (
-    <main>
-      <Rating isEditable={true} setRating={setRating} rating={rating} />
-      <Rating isEditable={false} rating={4} />
-
-      <SearchBar searchText={searchText} onSearchTextChange={setSearchText}/>
-    </main>
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchText.toLowerCase())
   );
-}
+  return (
+    <Layout>
+    <div className="container">
+      <div className='search-bar'>
+      <SearchBar searchText={searchText} setSearchText={setSearchText} />
+      </div>
+      <div className="products">
+        {filteredProducts.map(product => {
+          return (
+            <ProductCard product={product} key={product.id} />
+          )
+        })}
+      </div>
+    </div>
+    </Layout>
+  );
+};
+
+export default Home;
