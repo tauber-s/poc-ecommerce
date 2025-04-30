@@ -33,6 +33,11 @@ border-radius: 4px;
   justify-content: space-between;
 }
 
+.rating-info span {
+  display: flex
+;
+}
+
 .description {
   text-align: justify;
 }
