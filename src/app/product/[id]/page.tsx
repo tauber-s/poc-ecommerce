@@ -7,13 +7,14 @@ import Rating from '@/components/rating/rating';
 import products from '@/products.json';
 import "./page.css";
 import ProductCard from '@/components/product/card/productCard';
+import NotFound from '@/app/notFound';
 
 const Product = () => {
   const { id } = useParams() as { id: string };
   const currentProduct = products.find(prod => prod.id === parseInt(id));
 
   if (!currentProduct) {
-    return <h2>Product not found</h2>;
+    return <NotFound />
   }
 
   /**
