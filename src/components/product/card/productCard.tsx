@@ -3,11 +3,18 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { ProductCardProps } from "./productCard.props";
 import { addToCart } from "../../../store/redux/cartSlice";
+import { useStore } from "@/store/zustand/store";
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const dispatch = useDispatch();
-  const incrementCart = () => {
+  const incrementByRedux = () => {
     dispatch(addToCart({}));
+  };
+  const incrementByZustand = useStore((state) => state.addToCart)
+
+  const addToCartAll = () => {
+    incrementByRedux();
+    incrementByZustand();
   };
   return (
     <div className="card">
@@ -20,7 +27,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="view">
         <Link href={`/product/${product.id}`}>View Product</Link>
       </div>
-        <button className="add-button" onClick={incrementCart}>Add to Cart</button>
+        <button className="add-button" onClick={addToCartAll}>Add to Cart</button>
 
     </div>
   );
