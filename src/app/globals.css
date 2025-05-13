@@ -149,3 +149,23 @@ a:visited {
   border-radius: 4px;
   color: #000;
 }
+
+.cart-number {
+  background: #2196f3;
+  padding: 1px 5px;
+  border-radius: 20px;
+}
+
+.add-button {
+  color: #fff;
+  background-color: #e728d4;
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 20px;
+  font-size: 12px;
+  display: flex;
+  cursor: pointer;
+
+}
