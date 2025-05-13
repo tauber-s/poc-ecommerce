@@ -1,11 +1,13 @@
-import { useStore } from "@/store/zustand/store";
 import Link from "next/link";
+import { useAtom } from "jotai";
 import { useSelector } from "react-redux";
+import { useStore } from "@/store/zustand/store";
+import { total } from "@/store/jotai/store";
 
 const Header = () => {
   const reduxCart = useSelector((state) => state.reducer.total);
   const zustandCart = useStore((state) => state.total);
-  const jotaiCart = 0;
+  const [jotaiCart] = useAtom(total);
   return (
     <header>
       <nav className="navbar">

@@ -1,21 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
 import { ProductCardProps } from "./productCard.props";
-import { addToCart } from "../../../store/redux/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/store/redux/cartSlice";
 import { useStore } from "@/store/zustand/store";
+import { useAtom } from "jotai";
+import { total } from "@/store/jotai/store";
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const dispatch = useDispatch();
   const incrementByRedux = () => {
     dispatch(addToCart({}));
   };
+
   const incrementByZustand = useStore((state) => state.addToCart)
+
+  const [cartTotal, setCartTotal] = useAtom(total)
+  const incrementByJotai = () => {
+    setCartTotal(cartTotal + 1)
+  }
 
   const addToCartAll = () => {
     incrementByRedux();
     incrementByZustand();
+    incrementByJotai();
   };
+  
   return (
     <div className="card">
       <Image src={product.image} alt={product.title} width={300} height={300} />
